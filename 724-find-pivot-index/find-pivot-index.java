@@ -11,11 +11,12 @@ class Solution {
         int total = nums[n-1];
         for (int i = 0; i < n; i++) {
 
-            if (left == (total - nums[i])) {
+            int curr = nums[i];
+            if (left == (total - curr)) {
                 index = i;
                 break;
             }
-            left = nums[i];
+            left = curr;
 
         }
 
