@@ -20,7 +20,7 @@ class Solution {
         for(int i = 0; i< prices.length; i++){
             while(!stk.isEmpty()){
                 if(prices[i] <= prices[stk.peek()]){
-                    ans[stk.peek()] = prices[stk.pop()] - prices[i];
+                    ans[stk.pop()] -= prices[i];
                 }else{
                     break;
                 }
