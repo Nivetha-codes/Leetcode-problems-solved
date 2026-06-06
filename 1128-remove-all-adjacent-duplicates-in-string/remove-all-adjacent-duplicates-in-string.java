@@ -1,6 +1,6 @@
 class Solution {
     public String removeDuplicates(String s) {
-        
+        /*
         Deque<Character> stk = new ArrayDeque<>();
         for(int i=0; i<s.length(); i++){
 
@@ -21,6 +21,18 @@ class Solution {
             str.append(stk.pop());
         }
 
-        return str.reverse().toString();
+         return str.reverse().toString();
+        */
+
+        StringBuilder sb = new StringBuilder();
+        for(char c : s.toCharArray()){
+            if(!sb.isEmpty() && sb.charAt(sb.length()-1) == c){
+                sb.deleteCharAt(sb.length()-1);
+            }else{
+                sb.append(c);
+            }
+        }
+
+        return sb.toString();
     }
 }
