@@ -36,6 +36,7 @@ class Solution {
         
         */
 
+        /* Stack -> TC : O(N)
         for (char c : s.toCharArray()) {
 
             if (!stk.isEmpty() && stk.peek().key == c) {
@@ -56,7 +57,29 @@ class Solution {
                 sb.append(p.key);
             }
         }
-
         return sb.toString();
+        */
+
+        //Pointers and Array , TC : O(N)
+        char[] arr = s.toCharArray();
+        int[] count = new int[arr.length]; 
+
+        int i = 0;
+        for(int j=0; j<s.length(); j++,i++){
+            
+            arr[i] = arr[j];
+            if(i>0 && arr[i] == arr[i-1]){
+                count[i] = count[i-1] + 1;
+            }else{
+                count[i] = 1;
+            }
+
+            if(count[i] == k){
+                i -= k;
+            }
+        }
+
+        return new String(arr,0,i);
+        
     }
 }
