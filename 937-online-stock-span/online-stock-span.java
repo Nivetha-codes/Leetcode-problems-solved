@@ -11,15 +11,11 @@ class StockSpanner {
 
     public int next(int price) {
         int span = 1;
-        if (!dq.isEmpty()) {
 
-            while (!dq.isEmpty() && price >= dq.peek().price) {
-                span += dq.pop().span;
-            }
-            dq.push(new Pair<>(price, span));
-        } else {
-            dq.push(new Pair<>(price, span));
+        while (!dq.isEmpty() && price >= dq.peek().price) {
+            span += dq.pop().span;
         }
+        dq.push(new Pair<>(price, span));
 
         return span;
     }
