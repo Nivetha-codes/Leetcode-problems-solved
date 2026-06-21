@@ -1,60 +1,46 @@
 class Solution {
 
-    int pointer = 0;
-    Deque<String> stk = new ArrayDeque<>();
+    int pointer;
 
     public String decodeString(String s) {
-        
 
-        StringBuilder str = new StringBuilder();
-        String num = "";
-
-        while(pointer < s.length()){
-            char c = s.charAt(pointer);
-            if(Character.isDigit(c)){
-
-                num += c;
-                pointer++;
-            }
-            else if(c == '['){
-                stk.push(num);
-                num = "";
-                pointer++;
-                str.append(helper(s)); 
-            }
-            else{
-                str.append(c);
-                pointer++;
-            }
-        }
-
-        return str.toString() ;
+        pointer = 0;
+        return helper(s);
     }
 
-    public String helper(String s) {
+    private String helper(String s) {
 
-        
-        StringBuilder str = new StringBuilder();
-        String num = "";
-        while(s.charAt(pointer) != ']' && pointer < s.length()){
+        StringBuilder result = new StringBuilder();
+        int num = 0;
+
+        while (pointer < s.length() &&
+                s.charAt(pointer) != ']') {
+
             char c = s.charAt(pointer);
-            if(Character.isDigit(c)){
-                num += c;
+
+            if (Character.isDigit(c)) {
+
+                num = num * 10 + (c - '0');
                 pointer++;
-            }
-            else if(c == '['){
-                stk.push(num);
-                num = "";
+
+            } else if (c == '[') {
+
                 pointer++;
-                str.append(helper(s)); 
-            } 
-            else{
-                str.append(c); 
+
+                String decoded = helper(s);
+
+                result.append(decoded.repeat(num));
+
+                num = 0;
+            } else {
+
+                result.append(c);
                 pointer++;
             }
         }
+
         pointer++;
 
-        return str.toString().repeat(Integer.valueOf(stk.pop())); 
+        return result.toString();
     }
 }
