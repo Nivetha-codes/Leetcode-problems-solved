@@ -14,22 +14,25 @@ class Solution {
         int vowelCount = 0;
         int max = 0;
 
-        for(int i = 0; i < s.length(); i++){
-            
+        for (int i = 0; i < s.length(); i++) {
+
             char c = s.charAt(i);
 
-            if(i > k-1){
-                char left = s.charAt(i-k);
-                if(isVowel(left)){
+            if (i > k - 1) {
+                char left = s.charAt(i - k);
+                if (isVowel(left)) {
                     vowelCount--;
-                } 
+                }
             }
 
-            if(isVowel(c)){
+            if (isVowel(c)) {
                 vowelCount++;
             }
 
-            max  = Math.max(max,vowelCount);
+            if (i >= k - 1) {
+
+                max = Math.max(max, vowelCount);
+            }
 
         }
 
