@@ -17,14 +17,17 @@ class Solution {
         while (r < diffArr.length) {
 
             total += diffArr[r];
-            
-            while (total > maxCost) {
+
+            if (total > maxCost) {
 
                 total -= diffArr[l];
                 l++;
-        
+
             }
-            maxLen = Math.max(maxLen, r - l + 1);
+
+            if (total <= maxCost) {
+                maxLen = Math.max(maxLen, r - l + 1);
+            }
             r++;
 
         }
