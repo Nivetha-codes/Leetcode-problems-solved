@@ -36,8 +36,8 @@ class Solution {
 
     public int subarraysWithKDistinct(int[] nums, int k) {
 
-        int count = helper(nums, k) - helper(nums, k - 1);
-        return count;
+        return helper(nums, k) - helper(nums, k - 1);
+        
 
     }
 }
