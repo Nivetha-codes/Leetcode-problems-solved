@@ -14,14 +14,18 @@ class Solution {
     public int[][] kClosest(int[][] points, int k) {
 
         PriorityQueue<HeapNode> heap = new PriorityQueue<>(
-            (a,b) -> Integer.compare(a.key, b.key)
+            (a,b) -> Integer.compare(a.key, b.key) // swap for max-heap
         );
 
 
         for(int[] i : points){
             int key = (i[0] * i[0] ) + (i[1] * i[1]);
-            
+            //min-heap 
             heap.add(new HeapNode(key, new int[]{i[0],i[1]}));
+            //add check for max-heap - this was max stays on top and we keep removing max elements making the heap contains only last min distances - this reduces insertion time to - O(k log n) 
+            // if(heap.size() > k){
+            //     heap.poll();
+            // }
 
         }
 
